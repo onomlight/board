@@ -4,8 +4,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.korea.controller.SubController;
+import com.korea.dto.MemberDTO;
+import com.korea.service.MemberService;
 
 public class MemberJoinController implements SubController{
+	
+	private MemberService service = MemberService.getInstance();
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
@@ -27,7 +31,12 @@ public class MemberJoinController implements SubController{
 			System.out.println(email+","+pwd+","+addr1+","+addr2);
 			//2 입력값 검증
 			//3 서비스 실행
-			
+			MemberDTO dto = new MemberDTO();
+			dto.setEmail(email);
+			dto.setPwd(pwd);
+			dto.setAddr1(addr1);
+			dto.setAddr2(addr2);
+			boolean result =  service.MemberInsert(dto);
 			//4 View 이동
 			resp.sendRedirect("/"); 
 			

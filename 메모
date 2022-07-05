@@ -1,0 +1,10 @@
+0 FrontController 모든*.do 를 수신 web.xml 설정완료 (서버재부팅)
+1 외부 URL 요청
+2 FrontController init 초기화
+3 FrontController service() ->req url 가져오기 -> SubController 를 map에서 꺼냄
+4 SubController
+	1)파라미터 받기
+	2)입력값 검증(JS대체가능)
+	3)서비스 실행
+		service ->dao ->DB처리
+	4)View로 이동(포워드/리아디렉트)
