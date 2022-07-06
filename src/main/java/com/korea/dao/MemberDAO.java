@@ -57,4 +57,33 @@ public class MemberDAO {
 		
 		return false;
 	}
+	public MemberDTO Select(String email) {
+		MemberDTO dto = new MemberDTO();
+		try {
+			pstmt=conn.prepareStatement("select * from tbl_member where email=?");
+			pstmt.setString(1, email);
+			// 정보 이메일을 넣고 진행함
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) { // 널이아니라면 확인
+
+					dto.setEmail(email); // 이메일은 중복허용하지않음 프라이머리키라 // 
+					dto.setPwd(rs.getString("pwd"));
+					dto.setAddr1(rs.getString("addr1"));
+					dto.setAddr2(rs.getString("addr2"));
+					dto.setGrade(rs.getInt("grade"));
+					return dto;
+
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			//서블릿이라 자원제거해야함!!!
+			try{rs.close();}catch(Exception e) {e.printStackTrace();}
+			try{pstmt.close();}catch(Exception e) {e.printStackTrace();}
+		}
+		return dto;
+	}
 }

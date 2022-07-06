@@ -8,3 +8,19 @@
 	3)서비스 실행
 		service ->dao ->DB처리
 	4)View로 이동(포워드/리아디렉트)
+
+	
+	07-06
+	로그인 / 로그아웃
+	1FC(FrontController)에서 "/Login.do" , "LoginController"를 init 호출시 저장
+	2LC(LoginController)
+		1)파라미터
+		2)입력값 확인
+		3)서비스 실행
+		MemberService -> dao.select(email)
+		4)패스워드 일치확인
+			->세션객체에 grade 저장
+			->세션객체에 email 저장
+			
+		5)View로 이동
+			Main.jsp

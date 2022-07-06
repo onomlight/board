@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.korea.controller.auth.LoginController;
+import com.korea.controller.auth.LogoutController;
+import com.korea.controller.member.MemberInfoController;
 import com.korea.controller.member.MemberJoinController;
 
 public class FrontController extends HttpServlet{
@@ -17,14 +20,20 @@ public class FrontController extends HttpServlet{
 	@Override
 	public void init() throws ServletException {
 		list = new HashMap();
-		
+		//회원관련
 		list.put("/MemberJoin.do", new MemberJoinController());
+		list.put("/MemberInfo.do", new MemberInfoController());
 //		list.put("MemberSerach", null);
 		// 서브컨트롤러에 내용이 함께 들어가게됨
+		//인증 관련
+		list.put("/Login.do", new LoginController());
+		list.put("/Logout.do", new LogoutController());
+		//게시판관련
+		
 		
 	}
 	@Override
-	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void service( HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("text.html; charset-UTF-8");
 		
@@ -45,9 +54,3 @@ public class FrontController extends HttpServlet{
 
 }
 
-/* 1. Reqest 요청 ( 사용자 요청 )
- * 2. FontController's Service 함수 URL 확인
- * 3. URL에 해당하는 SubController객체주소 확인
- * 4. SubController의 execute 를 실행
- * 
- * */
