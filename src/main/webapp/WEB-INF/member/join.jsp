@@ -18,7 +18,7 @@
 			<input name=addr2 placeholder="Enter Address2"  class="form-control m-2">
 			<input type=submit value=가입하기 class="btn btn-primary w-100 m-2">
 			<input type=reset value=RESET class="btn btn-primary w-100 m-2">
-			<a href="/" class="btn btn-primary w-100 m-2">이전까지</a>
+			<a href="/" class="btn btn-primary w-100 m-2">이전</a>
 			<input type="hidden" name="flag" value="true">
 		</form>
 	</div>

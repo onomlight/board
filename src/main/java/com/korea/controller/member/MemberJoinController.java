@@ -37,6 +37,7 @@ public class MemberJoinController implements SubController{
 			dto.setAddr1(addr1);
 			dto.setAddr2(addr2);
 			boolean result =  service.MemberInsert(dto);
+			
 			//4 View 이동
 			resp.sendRedirect("/"); 
 			

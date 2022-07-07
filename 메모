@@ -24,3 +24,19 @@
 			
 		5)View로 이동
 			Main.jsp
+			
+			
+	07-07
+1 회원정보 수정
+	1FC "/MemberUpdate.do",MemberUpdateController추가
+	2MemberUpdateController
+		flag == null
+			/WEB-INF/member/password.jsp
+		flag != null
+			1 파라미터 받기(수정예정인 회원정보)
+			2 패스워드 체크
+			3 패스워드가 일치하면 dto 수정 내용 닫는다
+			4 service.MemberUpdate(dto) -> dao.update ->DB수정
+			5 req.setAttribute("dto",dto)
+			6 /WEB-INF/member/myinfo.jsp
+			

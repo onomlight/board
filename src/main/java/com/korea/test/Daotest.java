@@ -24,12 +24,24 @@ public class Daotest {
 //		 else
 //			 System.out.println("INSERT 실패");
 //	}
-	@Test
-	public void Test2() {
-		//MemberDAO's Select(email)
-		MemberDAO dao = MemberDAO.getInstance();
-		MemberDTO dto = dao.Select("example@example.com");
-		System.out.println("결과 : " +dto.toString());
-	}
+//	@Test
+//	public void Test2() {
+//		//MemberDAO's Select(email)
+//		MemberDAO dao = MemberDAO.getInstance();
+//		MemberDTO dto = dao.Select("example@example.com");
+//		System.out.println("결과 : " +dto.toString());
+//	}
 
+	@Test
+	public void Test3() {
+		MemberDTO dto = new MemberDTO();
+		dto.setEmail("example@example.com");
+		dto.setPwd("0987");
+		dto.setAddr1("쏘울");
+		dto.setAddr2("양구 통동");
+		
+		MemberDAO dao = MemberDAO.getInstance();
+		dao.Update(dto);
+	}
+	
 }
