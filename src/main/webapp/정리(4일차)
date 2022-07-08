@@ -1,0 +1,25 @@
+--------------------------
+1 필터 설정하기
+--------------------------
+1) web.xml 에 filter-url mapping
+	   <!-- Filter URL Mapping   -->
+	    <filter>
+			<filter-name>authority</filter-name>
+			<filter-class>com.korea.filter.authfilter</filter-class>    
+	    </filter>
+	    <filter-mapping>
+	 		<filter-name>authority</filter-name>   
+	    	<url-pattern>*.do</url-pattern>
+	    </filter-mapping>
+
+
+
+
+
+
+
+
+
+--------------------------
+2 페이지별 권한 부여 
+--------------------------

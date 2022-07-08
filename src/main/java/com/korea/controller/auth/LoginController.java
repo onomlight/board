@@ -41,7 +41,7 @@ public class LoginController implements SubController{
 				 
 				 //세션에 특정 옵션 부여 (예를 들어 계정의 grade를 저장한다거나~)
 				 HttpSession session = req.getSession();
-				 session.setAttribute("grade",dto.getGrade());
+				 session.setAttribute("grade",dto.getGrade()); // grade를 먼저 세션에 넣어야함 
 				 session.setAttribute("email", dto.getEmail());
 				 session.setMaxInactiveInterval(60*5);
 				 

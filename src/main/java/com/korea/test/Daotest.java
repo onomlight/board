@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import com.korea.dao.MemberDAO;
 import com.korea.dto.MemberDTO;
+import com.korea.service.MemberService;
 
 public class Daotest {
 
@@ -32,16 +33,37 @@ public class Daotest {
 //		System.out.println("결과 : " +dto.toString());
 //	}
 
-	@Test
-	public void Test3() {
-		MemberDTO dto = new MemberDTO();
-		dto.setEmail("example@example.com");
-		dto.setPwd("0987");
-		dto.setAddr1("쏘울");
-		dto.setAddr2("양구 통동");
-		
-		MemberDAO dao = MemberDAO.getInstance();
-		dao.Update(dto);
-	}
+//	@Test
+//	public void Test3() {
+//		MemberDTO dto = new MemberDTO();
+//		dto.setEmail("example@example.com");
+//		dto.setPwd("0987");
+//		dto.setAddr1("쏘울");
+//		dto.setAddr2("양구 통동");
+//		
+//		MemberDAO dao = MemberDAO.getInstance();
+//		dao.Update(dto);
+//	}
 	
+	
+	@Test
+	public void Test4() {
+		MemberDTO dto = new MemberDTO();
+//		dto.setEmail("admin@admin.com");
+//		dto.setPwd("1234");
+//		dto.setAddr1("");
+//		dto.setAddr2("");
+//		dto.setGrade(2);
+		
+		MemberService service = MemberService.getInstance();
+//		service.MemberInsert(dto); // 관리자계정등록
+		
+		dto.setEmail("guest@guest.com");
+		dto.setPwd("1234");
+		dto.setAddr1("");
+		dto.setAddr2("");
+		dto.setGrade(0);
+		
+		service.MemberInsert(dto);
+	}
 }
