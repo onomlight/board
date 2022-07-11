@@ -15,15 +15,14 @@
 	<div class="container-md" id=wrapper style="width:80%;margin:100px auto;">
 		<!-- TopMenu -->
 		<%@include file="/resources/includes/topmenu.jsp" %>
-		
-		
+			
 		<!-- NAV -->
 		<%@include file="/resources/includes/nav.jsp" %>
 		
 		<!-- MainContents -->
 		<div id=maincontents style="border:1px solid gray;margin-top:15px;">
+			<h1>자유게시판 글쓰기</h1>
 			
-			<h1> 자유게시판 글쓰기 </h1>
 		</div>
 		
 		<!-- Footer -->
