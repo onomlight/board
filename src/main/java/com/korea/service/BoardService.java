@@ -26,4 +26,9 @@ public class BoardService {
 		
 		return dao.Select(start, end);
 	}
+	public int getTotalCnt() { // 서비스 연결 
+		return dao.getTotalCount();
+	}
+	
+	
 }

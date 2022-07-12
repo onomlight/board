@@ -92,4 +92,48 @@
 	3) 권한 설정  
 
 
-			
+	07-11
+	
+	1)tbl_
+	
+	
+	게시물받기
+	
+	select rownum rn,no,title,content,writer,regdate,pwd,count,ip,filename,filesize
+	from
+	(
+    select /*+ INDEX_EDSC (tbl_board PK_NO) */ >> 오라클 힌트
+    rownum rn,no,title,content,writer,regdate,pwd,count,ip,filename,filesize
+    from tbl_board where rownum<=10 --end
+	)
+	where rn>=5 --start
+	
+	
+	
+	07-12
+	
+	총페이지수받기
+	================
+	DAO - select count(*) from tbl_board; ->
+	Service ->
+	Controller (req.setAttribute()) - >
+	view 
+	순으로 이동
+	
+	list.jsp
+	전체게시물건수 받기
+	전체페이지 계산
+	현재페이지 계산~ 
+	
+	===================
+	페이지네이션
+	==================
+	
+	
+	- 표시할 페이지 블럭 수
+	- 현재 블럭 수 ( 전체 페이지 수)
+	
+	1)페이지번호 클릭 - > paging(페이지번호) 호출
+	2)paging함수 받은 페이지번호를 이용해서 start,end 계산
+	3) form(readFrm)에 start,end,nowPage를 저장
+	4) 폼 전송 
