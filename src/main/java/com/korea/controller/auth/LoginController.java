@@ -30,7 +30,7 @@ public class LoginController implements SubController{
 		 //서비스 실행
 		 
 		 //MemberService - > ID가 있는지 DB로 확인 -> DAO에서 정보확인 - > DB로 확인된다면 True/False로 확인
-		 MemberDTO dto =	service.memberSearch(email);
+		 MemberDTO dto =	service.MemberSearch(email);
 		 if(dto!=null)
 		 {
 			 //PW 일치여부 확인

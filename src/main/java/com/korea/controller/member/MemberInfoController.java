@@ -26,7 +26,7 @@ public class MemberInfoController implements SubController{
 			HttpSession session = req.getSession();
 			String email = (String)session.getAttribute("email"); // 세션 다운캐스팅 필요
 			// service를 이용해서 접속중인 사용자의 정보를 가져옴 
-			MemberDTO dto = service.memberSearch(email);
+			MemberDTO dto = service.MemberSearch(email);
 			
 			//request에 dto 저장
 			req.setAttribute("dto", dto);

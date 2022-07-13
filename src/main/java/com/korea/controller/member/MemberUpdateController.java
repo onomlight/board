@@ -41,7 +41,7 @@ public class MemberUpdateController implements SubController {
 				
 				HttpSession session =req.getSession();
 				String email =(String)session.getAttribute("email"); // 정보확인을 위한 이메일 꺼내기
-				MemberDTO dto = service.memberSearch(email); // 서비스 반환형이 DTO임 
+				MemberDTO dto = service.MemberSearch(email); // 서비스 반환형이 DTO임 
 				// DTO에서 꺼내온 db는 패스워드 이메일도 있음 
 				
 				// 패스워드 일치여부 확인

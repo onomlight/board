@@ -49,7 +49,7 @@ public class BoardDAO {
 				"select rownum rn,no,title,content,writer,regdate,pwd,count,ip,filename,filesize"
 				+" from"
 				+"("
-				+"		    select /*+ INDEX_EDSC (tbl_board PK_NO) */" //힌트라는 오라클 기능 사용 
+				+"		    select /*+ INDEX_DESC (tbl_board PK_NO) */" //힌트라는 오라클 기능 사용 
 				+" 	rownum rn,no,title,content,writer,regdate,pwd,count,ip,filename,filesize"
 				+" from tbl_board where rownum<=?" // 앤드값
 				+")"
@@ -103,5 +103,26 @@ public class BoardDAO {
 				try {pstmt.close();}catch(Exception e) {e.printStackTrace();}
 			}
 			return result;
+		}
+		
+		public boolean Insert(BoardDTO dto) // 파일업로드없는리설트
+		{
+			try {
+				pstmt = conn.prepareStatement("insert into tbl_board values(tbl_board_seq.NEXTVAL,?,?,?,sysdate,?,0,?,0,0)");
+				pstmt.setString(1, dto.getTitle());
+				pstmt.setString(2, dto.getContent());
+				pstmt.setString(3, dto.getWriter());
+				pstmt.setString(4, dto.getPwd());
+				pstmt.setString(5, dto.getIp());
+				
+				int result = pstmt.executeUpdate();
+				if(result>0)
+					return true;
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally{
+				try {pstmt.close();}catch(Exception e) {e.printStackTrace();}
+			}
+			return false;
 		}
 }

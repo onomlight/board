@@ -100,8 +100,18 @@
 					form.action="/Board/list.do";
 					form.submit();
 				}
+				
+				/* 처음으로 이동 처리  */
+				function init() {
+					form = document.initFrm;
+					form.nowPage.value=1;
+					form.action="/Board/list.do";
+					form.submit();
+				}
 			</script>
-			
+				<form name=initFrm method="get">
+					<input type="hidden" name="nowPage">			
+					</form>
 			<!-- 페이징 처리 폼  -->
 			<form name="readFrm" method="get">
 					<input type="hidden" name="no">		<!-- 게시물 번호 -->
@@ -118,8 +128,8 @@
 				<tr >
 					<td style=border:0px;> <span style=color:orange;><%=nowPage %></span> / <%=totalPage %> Page</td>
 					<td style=border:0px;text-align:right;>
-						<button class="btn btn-secondary">처음으로</button>
-						<button class="btn btn-secondary">글쓰기</button>
+						<button class="btn btn-secondary" onclick="init()">처음으로</button>
+						<a class="btn btn-secondary" href="/Board/post.do">글쓰기</a>
 					</td>
 				</tr>
 			</table>
@@ -136,7 +146,7 @@
 			
 				<%
 					ArrayList<BoardDTO>list = (ArrayList<BoardDTO>)request.getAttribute("list");
-					System.out.println("게시물 건수 : " + list);
+					/* System.out.println("게시물 건수 : " + list); */
 					for(int i=0;i<list.size();i++)
 					{
 				%>
