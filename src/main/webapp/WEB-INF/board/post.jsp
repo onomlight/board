@@ -32,8 +32,8 @@
 				</nav>
 			</div>
 			<h1>Write</h1>
-			<form action="/Board/post.do" method="post">
-				<input name="title" class="form-control mb-3 w-50" placeholder="적어">
+			<form action="/Board/post.do" method="post" enctype="multipart/form-data">
+				<input name="title" class="form-control mb-3 w-50 -" placeholder="적어">
 				<textarea name="content" class="form-control mb-3 w-50" style="height:500px;"> </textarea>
 				<input type="password" name="pwd" class="form-control mb-3 w-50" placeholder="비번">
 				<input type="file" name="files"  class="form-control mb-3 w-50" multiple/>

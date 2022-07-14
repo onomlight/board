@@ -4,7 +4,7 @@ import java.io.*;
 
 import oracle.net.aso.*;
 
-public class C01FileClass {
+public class C00FileClass {
 
 	public static void main(String[] args) {
 		

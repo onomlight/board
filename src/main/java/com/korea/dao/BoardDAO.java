@@ -108,12 +108,16 @@ public class BoardDAO {
 		public boolean Insert(BoardDTO dto) // 파일업로드없는리설트
 		{
 			try {
-				pstmt = conn.prepareStatement("insert into tbl_board values(tbl_board_seq.NEXTVAL,?,?,?,sysdate,?,0,?,0,0)");
+				
+				pstmt = conn.prepareStatement("insert into tbl_board values(tbl_board_seq.NEXTVAL,?,?,?,sysdate,?,0,?,?,?)");
 				pstmt.setString(1, dto.getTitle());
 				pstmt.setString(2, dto.getContent());
 				pstmt.setString(3, dto.getWriter());
 				pstmt.setString(4, dto.getPwd());
 				pstmt.setString(5, dto.getIp());
+				
+				pstmt.setString(6, dto.getFilename());
+				pstmt.setString(7, dto.getFilesize());
 				
 				int result = pstmt.executeUpdate();
 				if(result>0)

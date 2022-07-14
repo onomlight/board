@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +19,12 @@ import com.korea.controller.member.MemberUpdateController;
 import com.korea.controller.notice.NoticeListController;
 import com.korea.controller.notice.NoticePostController;
 
-
+@MultipartConfig // 파일의 최대크기라든지,로케이션지적이라든지 확인 
+(
+		fileSizeThreshold=1024*1024*10,		//10Mb
+		maxFileSize=1024*1024*50,			//50Mb
+		maxRequestSize=1024*1024*100		//100Mb
+)
 public class FrontController extends HttpServlet{
 	//URL : SubController객체주소
 	HashMap <String,SubController> list = null;
