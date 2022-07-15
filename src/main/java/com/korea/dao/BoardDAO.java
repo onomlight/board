@@ -129,4 +129,47 @@ public class BoardDAO {
 			}
 			return false;
 		}
+		
+		public BoardDTO Select(int No)
+		{
+			
+			BoardDTO dto = new BoardDTO();
+			try {
+			
+				pstmt=conn.prepareStatement("select * from tbl_board where no=?");
+				pstmt.setInt(1, No);
+				rs = pstmt.executeQuery();
+				if(rs.next()){
+					dto.setWriter(rs.getString("writer"));
+					dto.setContent(rs.getString("content"));
+					dto.setTitle(rs.getString("title"));
+					dto.setPwd(rs.getString("pwd"));
+					dto.setNo(rs.getInt("no"));
+					dto.setIp(rs.getString("ip"));
+					dto.setFilename(rs.getString("filename"));
+					dto.setFilesize(rs.getString("filesize"));
+					dto.setCount(rs.getInt("count"));
+					dto.setRegdate(rs.getString("regdate"));
+				}
+		
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally{
+				try {rs.close();}catch(Exception e) {e.printStackTrace();}
+				try {pstmt.close();}catch(Exception e) {e.printStackTrace();}
+			}
+			return dto;
+		}
 }
+
+
+
+
+//try {
+//	
+//}catch(Exception e) {
+//	e.printStackTrace();
+//}finally{
+//	
+//}
+//return null;

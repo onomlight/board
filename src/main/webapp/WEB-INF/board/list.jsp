@@ -108,6 +108,17 @@
 					form.action="/Board/list.do";
 					form.submit();
 				}
+				
+				/* 게이물 읽기 */
+				function read(no) //no : 게시물 번호
+				{
+					form = document.readFrm;
+					form.no.value=no;
+					form.nowPage.value=<%=nowPage%>;
+					form.action="/Board/read.do";
+					form.submit();
+					
+				}
 			</script>
 				<form name=initFrm method="get">
 					<input type="hidden" name="nowPage">			
@@ -152,7 +163,7 @@
 				%>
 				<tr>
 					<td><%=list.get(i).getNo() %></td>
-					<td><%=list.get(i).getTitle() %></td>
+					<td><a href="javascript:read('<%=list.get(i).getNo()%>')"><%=list.get(i).getTitle() %></a></td>
 					<td><%=list.get(i).getWriter() %></td>
 					<td><%=list.get(i).getRegdate() %></td>
 					<td><%=list.get(i).getCount() %></td>

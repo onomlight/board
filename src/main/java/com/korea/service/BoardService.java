@@ -120,4 +120,10 @@ public class BoardService {
 		return Filename;
 	}
 	
+	//게시물 가져오기
+	public BoardDTO getBoardDTO(int no)
+	{
+		return dao.Select(no);
+	}
+	
 }

@@ -52,14 +52,16 @@ public class BoardPostController  implements SubController{
 				dto.setIp(ip);
 				dto.setWriter(writer);
 				
+				//추가(정리8일차-Upload) 파일 part 전달
+				ArrayList<Part> parts=(ArrayList<Part>) req.getParts();
+				boolean result=false;
+				long size = parts.get(3).getSize();
+				 
+				if(size==0) //파일전달이 안된경우
+					result = service.PostBoard(dto);
+				else			//파일이포함되어 있는경우
+					result = service.PostBoard(dto,parts);
 				
-				//추가 파일 part 전달
-				ArrayList<Part> parts=(ArrayList<Part>) req.getParts();//반환형이 컬랙션파트
-				boolean result = false;
-				if(parts==null)// 파일전달이 안된경우
-					 result = service.PostBoard(dto); 
-				else 					// 파일이 포함되어 있는경우
-					result = service.PostBoard(dto,parts); 
 				// 4 View
 				if(result) {
 //
