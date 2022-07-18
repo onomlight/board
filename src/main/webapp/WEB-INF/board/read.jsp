@@ -37,13 +37,15 @@
 				BoardDTO dto = (BoardDTO)request.getAttribute("dto");
 				String nowPage=(String)request.getAttribute("nowPage");
 				
-				String[] filelist = null;
-				String[] filesize = null;
+				String[] filelist=null;
+				String[] filesize=null;
 				if(dto.getFilename()!=null)
 				{
 					filelist = dto.getFilename().split(";");
 					filesize = dto.getFilesize().split(";");
 				}
+				 
+				
 			%>
 			<form action="" method="post" >
 				<input name="title" class="form-control mb-3 w-50" value="<%=dto.getTitle()%>">
@@ -69,17 +71,27 @@
 			        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			      </div>
 			      <div class="modal-body">
-			       	<%
-			       	if(filelist!=null)
-			       	{
-						for(int i=0;i<filelist.length;i++){				
-							out.println("<a href=#>"+filelist[i]+"("+filesize[i]+" byte)</a><br>");
-						}
-			       	}else
-			       	{
-			       		out.print("파일 없음");
-			       	}
-					%>
+			         <!-- 첨부파일  -->
+			         	<%@page import="java.net.URLEncoder" %>
+			         	<%		         	
+			         		if(filelist!=null)
+			         		{
+								for(int i=0;i<filelist.length;i++){	
+									
+									String tmpfilename = filelist[i].substring(0,filelist[i].lastIndexOf("_"));
+									tmpfilename += filelist[i].substring(filelist[i].lastIndexOf("."),filelist[i].length());
+									
+									filelist[i] = URLEncoder.encode(filelist[i],"utf-8").replaceAll("\\+", "%20");							 
+										out.println("<a href=/Board/download.do?filename="+filelist[i]+">"+tmpfilename+"("+filesize[i]+" byte)</a><br>");
+									}
+			         		}
+			         		else
+			         		{
+			         			out.println("파일 없음");
+			         		}
+			         		
+						%>
+			         
 			      </div>
 			      <div class="modal-footer">	        
 			        <button type="button" class="btn btn-primary">모두받기</button>
@@ -89,9 +101,15 @@
 			  </div>
 			</div>
 
-			 
+			
+			
+			
+			
+			
+			
+
+			
 				
-			 
 				
 		</div>
 		
