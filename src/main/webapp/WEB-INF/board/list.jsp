@@ -117,7 +117,7 @@
 					form = document.readFrm;
 					form.no.value=no;
 					form.nowPage.value=<%=nowPage%>;
-					form.action="/Board/read.do";
+					form.action="/Board/read.do?init";
 					form.submit();
 					
 				}
