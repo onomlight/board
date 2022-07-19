@@ -49,12 +49,15 @@
 			
 			<%
 			//상단 의 현재 페이지 번호 변경 위한 처리
-					if(request.getAttribute("nowPage")!=null)
-						
+					if(!request.getParameter("nowPage").equals("null"))
+					{			
 						nowPage=
 						Integer.parseInt(
-								(String)request.getAttribute("nowPage")
+								(String)request.getParameter("nowPage")
 								);
+						start=0;
+						end=0;
+					}
 			%>
 			
 			

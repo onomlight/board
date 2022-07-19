@@ -25,11 +25,15 @@ public class BoardReadController implements SubController {
 
 		//서비스실행
 		int num = Integer.parseInt(no);
+		//Count증가
+		service.Countup(num);
+		//게시물 받기
 		BoardDTO dto = service.getBoardDTO(num);
 		
 		//세션에 읽고있는 게시물 저장(수정,삭제로 이동시 현재 읽는 게시물 확인하기 쉽다)
 		HttpSession session = req.getSession();
 		session.setAttribute("dto", dto);
+		
 		
 		//뷰로 이동
 		

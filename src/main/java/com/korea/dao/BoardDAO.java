@@ -160,6 +160,42 @@ public class BoardDAO {
 			}
 			return dto;
 		}
+		// 마지막넘버 확인
+		public int getLastNo()
+		{
+
+			try {
+				
+				pstmt=conn.prepareStatement("select /*+INDEX_DESC(tbl_board PK_NO) */ rownum rn,no from tbl_board where rownum=1 ");
+				rs = pstmt.executeQuery();
+				rs.next();
+				int no = rs.getInt(2);//No 값
+				
+				return no;
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally{
+				
+			}
+			
+			return 0; 
+			
+		}
+		//카운트 증가
+		public void CountUp(int no)
+		{
+			try {
+				pstmt = conn.prepareStatement("update tbl_board  set count = count+1 where no = ?");
+				pstmt.setInt(1, no);
+				pstmt.executeUpdate();
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally{
+				
+			}
+			
+		}
 }
 
 

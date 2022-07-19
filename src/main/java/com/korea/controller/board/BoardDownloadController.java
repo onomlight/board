@@ -15,9 +15,13 @@ public class BoardDownloadController implements SubController{
 		
 		//파라미터
 		String filename=req.getParameter("filename");
+		String flag = req.getParameter("flag");
+		
 		//입력값
+		
 		//서비스
-		boolean result=service.download(filename, req, resp);
+		boolean result = false;
+		result=service.download(filename, req, resp);
 		
 		
 		//View
