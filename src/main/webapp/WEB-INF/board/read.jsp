@@ -41,9 +41,17 @@
 				String[] filesize=null;
 				if(dto.getFilename()!=null)
 				{
-					filelist = dto.getFilename().split(";"); // 첨부파일이있다면 첨부파일리스트에 담겨놓기
+					filelist = dto.getFilename().split(";");
 					filesize = dto.getFilesize().split(";");
 				}
+				
+				//시작번호 계산
+				int np = Integer.parseInt(nowPage);
+				int numPerPage=10;
+				int start=(np*numPerPage)-numPerPage+1;
+				
+				//끝번호 계산 
+				int end=np*numPerPage;
 				 
 				
 			%>
@@ -56,7 +64,7 @@
 				
 				
 				<input type=submit value="글수정" class="btn btn-primary">
-				<a href="/Board/list.do?nowPage=<%=nowPage%>"  class="btn btn-primary">리스트</a>
+				<a href="/Board/list.do?nowPage=<%=nowPage%>&start=<%=start %>&end=<%=end %>"  class="btn btn-primary">리스트</a>
 				<a href="#"  class="btn btn-primary">글삭제</a>
 				<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
 				 첨부파일 보기
@@ -81,7 +89,7 @@
 									String tmpfilename = filelist[i].substring(0,filelist[i].lastIndexOf("_"));
 									tmpfilename += filelist[i].substring(filelist[i].lastIndexOf("."),filelist[i].length());
 									
-									filelist[i] = URLEncoder.encode(filelist[i],"utf-8").replaceAll("\\+", "%20");			// 각각의 파일요소마다 인코딩을해서 넣었음				 
+									filelist[i] = URLEncoder.encode(filelist[i],"utf-8").replaceAll("\\+", "%20");							 
 										out.println("<a href=/Board/download.do?filename="+filelist[i]+">"+tmpfilename+"("+filesize[i]+" byte)</a><br>");
 									}
 			         		}
@@ -95,8 +103,9 @@
 			      </div>
 			      <div class="modal-footer">	
 			      	       
-			        <a  id="downall" class="btn btn-primary" href="#">모두받기(NOZIP)</a>
-			        <a class="btn btn-primary" href="/Board/downloadAll.do">모두받기(ZIP)</a>
+			        <a id="downall" class="btn btn-primary" href="#">모두받기(NoZIP)</a>
+			        <a  class="btn btn-primary" href="/Board/downloadAll.do">모두받기(ZIP)</a>
+			     
 			        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
 			      </div>
 			      
@@ -112,22 +121,23 @@
 			      			}
 			      		%>
 			      </form>
+			      
 			      <script>
 			      $(document).ready(function(){
 			            
 			    	  	form = document.multiform;
-			            var iFrameCnt = 0; //프레임 개수 확인 , 프레임 이름 지정
+			            var iFrameCnt = 0; //프레임 개수확인 ,프레임 이름 지정
 			               
-			               $('#downall').click(function(event){ //다운로드 이미지 실행
+			               $('#downall').click(function(){ //다운로드 이미지 실행
 			                   
 			                  	for(i=0;i<form.childElementCount;i++)
 			                	{
 			                       fileName =form[i].value;
 			                       var url = "/Board/download.do?filename="+fileName;                           
-			                       fnCreateIframe(iFrameCnt); // 보이지 않는 iframe 생성, name는 숫자로   // 하위 이너프레임을 추가를해서 진행 
+			                       fnCreateIframe(iFrameCnt); // 보이지 않는 iframe 생성, name는 숫자로  
 			                       $("iframe[name=" + iFrameCnt + "]").attr("src", url);     
 			                       iFrameCnt++;      
-			                       fnSleep(1000); //1초
+			                       fnSleep(1000); 
 			                	}
 			                  
 			                   
@@ -143,7 +153,7 @@
 			                   var start = new Date().getTime();
 			                   while (start + delay > new Date().getTime());
 			 
-			               }; // 시간차를 두는 함수 진행 
+			               };
 			               
 			               
 			               

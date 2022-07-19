@@ -31,7 +31,8 @@ public class BoardListController implements SubController{
 			else
 			{
 				start = Integer.parseInt(tmpstart);
-				end = Integer.parseInt(tmpend);
+				end = Integer.parseInt(tmpend); // 나중에 수정할것
+				
 			}
 
 			//입력값
