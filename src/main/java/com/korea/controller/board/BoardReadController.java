@@ -3,6 +3,7 @@ package com.korea.controller.board;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -25,8 +26,26 @@ public class BoardReadController implements SubController {
 
 		//서비스실행
 		int num = Integer.parseInt(no);
-		//Count증가
-		service.Countup(num);
+		
+		//init쿠키꺼내기
+		Cookie[] cookies = req.getCookies(); // 모든 쿠키 받기
+		for(int i=0;i<cookies.length;i++)
+		{
+			if(cookies[i].getName().equals("init")) // ㅑinit인 쿠키를 찾았다면
+			{
+				cookies[i].setMaxAge(0); //쿠키 제거
+				resp.addCookie(cookies[i]);// response에 쿠기제거 적용
+				service.Countup(num); // 조회수 증가
+				break; // 반복문 벗어나기
+			}
+			
+		}
+		
+		
+		 
+		
+		
+		
 		//게시물 받기
 		BoardDTO dto = service.getBoardDTO(num);
 		
@@ -34,15 +53,12 @@ public class BoardReadController implements SubController {
 		HttpSession session = req.getSession();
 		session.setAttribute("dto", dto);
 		
-		
-		//뷰로 이동
-		
+		//뷰로 이동		
 		try {
-		
 			req.setAttribute("dto", dto);
-			req.setAttribute("nowPage", nowPage);
+			req.setAttribute("nowPage", nowPage);			
 			req.getRequestDispatcher("/WEB-INF/board/read.jsp").forward(req, resp);
-		
+			
 		
 		} catch (ServletException e) {
 			// TODO Auto-generated catch block

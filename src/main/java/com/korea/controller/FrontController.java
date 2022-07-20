@@ -11,11 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.korea.controller.auth.LoginController;
 import com.korea.controller.auth.LogoutController;
+import com.korea.controller.board.BoardDeleteController;
 import com.korea.controller.board.BoardDownloadAllController;
 import com.korea.controller.board.BoardDownloadController;
 import com.korea.controller.board.BoardListController;
 import com.korea.controller.board.BoardPostController;
 import com.korea.controller.board.BoardReadController;
+import com.korea.controller.board.BoardUpdateController;
 import com.korea.controller.member.MemberInfoController;
 import com.korea.controller.member.MemberJoinController;
 import com.korea.controller.member.MemberUpdateController;
@@ -51,6 +53,8 @@ public class FrontController extends HttpServlet{
 		 list.put("/Board/read.do", new BoardReadController());
 		 list.put("/Board/download.do", new BoardDownloadController());
 		 list.put("/Board/downloadAll.do", new BoardDownloadAllController());
+		 list.put("/Board/update.do", new BoardUpdateController());
+		 list.put("/Board/delete.do", new BoardDeleteController());
 		 
 		 //공지사항
 		 list.put("/Notice/list.do", new NoticeListController());
