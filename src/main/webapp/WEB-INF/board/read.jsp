@@ -180,26 +180,69 @@
 			      
 			    </div>
 			  </div>
-			  
-			  
 			</div>
-
-			
-			
-			
-			
-			
-			
-
-			
-				
-				
 		</div>
-		
 		<!-- Footer -->
+			<!-- 댓글남기기 -->
+		<<div id=replycontainer class="w-50" style="position:absolute;left:53%;top:37%;">
+			<form>
+				<div>
+					<textarea id=comment class="form-control mb-3" style="height:200px;width:580px;" placeholder="댓글을입력해주세요"></textarea>
+					<input type=hidden name=nowPage value=<%=nowPage %> >	
+				</div>
+				<div class="mb-3">
+					<a href="javascript:postreply" class="btn btn-secondary">댓글 남기기</a>
+				</div>
+			</form>
+			<div class="mb-2">
+				댓글수 : <span>100</span>
+			</div>
+			<div style="overflow:auto;height:300px;width:580px;" id="replylist">
+				<!-- 여기에 댓글리스트가 출력되어야함 -->
+				<div class="form-control">
+					<span style="font-size: 0.5rem">example@example.com</span>
+					<span style="font-size: 0.5rem">2022-07-21</span><br>
+					<span>글내용@!@!@#@!@#!@#@$#!@$!@#$@!#$#@!$@</span>
+				</div>
+				
+			</div>
+		</div> 
+		<!-- 댓글남기기 끝 -->	
+		<script>
+		function postreply() {
+			// 댓글등록
+		}
 		
-	
+		function listreply(){
+			// 댓글 목록 가져오기
+		}
+		function totalreplycnt() {
+			// 댓글 수 
+		}
+		</script>
 	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	<!-- 글수정 Modal -->		
@@ -255,15 +298,13 @@
 		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		      </div>
 		      
-		      <form action="/Board/update.do" method="post" name="deletefrm">
+		      <form action="/Board/delete.do" method="post" name="deletefrm">
 			      <div class="modal-body">
 			        <input type=password class="form-control"  name=pwd placeholder="INSERT PASSWORD">
-			        <input type=hidden name=title>
-			        <input type=hidden name=content>
-			        <input type=hidden name=nowPage value=<%=nowPage %> >
+			        <input type=hidden name=nowPage value=<%=nowPage %>>
 			      </div>
 			      <div class="modal-footer">
-			        <button type="button" class="btn btn-primary" id=deletebtn>삭제요청</button>
+			        <button type="submit" class="btn btn-primary" id=deletebtn>삭제요청</button>
 			        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
 			      </div>
 		      </form>

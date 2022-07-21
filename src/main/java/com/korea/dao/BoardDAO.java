@@ -166,10 +166,12 @@ public class BoardDAO {
 
 			try {
 				
-				pstmt=conn.prepareStatement("select /*+INDEX_DESC(tbl_board PK_NO) */ rownum rn,no from tbl_board where rownum=1 ");
+//				pstmt=conn.prepareStatement("select /*+INDEX_DESC(tbl_board PK_NO) */ rownum rn,no from tbl_board where rownum=1 ");
+				pstmt=conn.prepareStatement("select last_number from user_sequences where sequence_name='TBL_BOARD_SEQ'"); // 시퀀스를 받아내도록함
 				rs = pstmt.executeQuery();
 				rs.next();
-				int no = rs.getInt(2);//No 값
+//				int no = rs.getInt(2);//No 값
+				int no = rs.getInt(1);// 나오는값이 하나밖에 없어서 1번으로 수정함
 				
 				return no;
 			}catch(Exception e) {
@@ -219,10 +221,15 @@ public class BoardDAO {
 			
 			try {
 			//DB삭제
+				pstmt = conn.prepareStatement("delete from tbl_board where no=?"); // 넘버와 번호가 동일하다면 삭제요청
+				pstmt.setInt(1, dto.getNo()); // 게시물 번호 전달 
+				int result = pstmt.executeUpdate(); // 맞다면 정보 업데이트 실행 
+				if(result>0)
+					return true;
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally{
-			
+			try {pstmt.close();}catch(Exception e) {e.printStackTrace();}
 		}
 			
 			return false;

@@ -57,6 +57,14 @@
 	 			if(!request.getParameter("nowPage").equals("null"))
 				{
 					nowPage =Integer.parseInt(request.getParameter("nowPage"));
+					//나우페이지 기준으로 스타트값과 엔드값을 계싼해야함
+				 // 보드리스트컨트롤로로 이동함
+				 	//start=(nowPage*numPerPage)-numPerPage+1;
+					//end=(nowPage*numPerPage);
+					
+					// 스타트 엔드가 계산될수있도록 설정하여 진행
+					
+					
 
 					
 				} 

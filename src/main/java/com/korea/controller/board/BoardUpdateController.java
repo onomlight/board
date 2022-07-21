@@ -58,7 +58,7 @@ public class BoardUpdateController implements SubController{
 			}
 		}
 		else
-		{
+		{	
 			//Read.jsp로 이동.. MSG 전달
 			try {
 				
