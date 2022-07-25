@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 
 <%@include file="/resources/includes/link.jsp" %>
-<link rel="stylesheet" href="resources/css/common.css" >
+<link rel="stylesheet" href="/resources/css/common.css" >
 
 </head>
 <body>

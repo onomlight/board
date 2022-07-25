@@ -25,7 +25,7 @@ public class LoginController implements SubController{
 		 //입력값 검증
 		 if(email ==null || pwd==null)
 		 {
-			 resp.sendRedirect("/");
+			 resp.sendRedirect("/index.do");
 		 }
 		 //서비스 실행
 		 
@@ -46,21 +46,21 @@ public class LoginController implements SubController{
 				 session.setMaxInactiveInterval(60*5);
 				 
 				 //View로 이동
-				 resp.sendRedirect("/main.jsp");
+				 resp.sendRedirect("/main.do");
 				 
 			 }
 			 else
 			 {
 				 //패스워드 불일치
 				 req.setAttribute("MSG", "패스워드가 일치하지 않습니다..");
-				 req.getRequestDispatcher("/").forward(req, resp);
+				 req.getRequestDispatcher("/index.do").forward(req, resp);
 			 }
 		 }
 		 else
 		 {
 			 //아이디 조회 실패.. 해당 아이디가 없습니다
 			 req.setAttribute("MSG", "일치하는 아이디가 없슴");
-			 req.getRequestDispatcher("/").forward(req, resp);
+			 req.getRequestDispatcher("/index.do").forward(req, resp);
 		 }
 		
 		 

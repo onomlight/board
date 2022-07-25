@@ -23,7 +23,7 @@ public class LogoutController implements SubController {
 			
 			
 			req.setAttribute("MSG", "로그아웃됨");
-			req.getRequestDispatcher("/").forward(req, resp);
+			req.getRequestDispatcher("/index.do").forward(req, resp);
 //			resp.sendRedirect("/");
 		} catch (Exception e) {
 			 

@@ -46,6 +46,10 @@ public class FrontController extends HttpServlet{
 		 list.put("/MemberInfo.do", new MemberInfoController());
 		 list.put("/MemberUpdate.do", new MemberUpdateController());
 		 
+		 //기본 25일 추가내용 // 토큰방식을 처리하기위해 내용을 만듬
+		 list.put("/index.do", new IndexController());
+		 list.put("/main.do", new MainController());
+		 
 		 //인증관련
 		 list.put("/Login.do", new LoginController());
 		 list.put("/Logout.do", new LogoutController());

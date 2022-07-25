@@ -5,14 +5,27 @@ public class MemberDTO {
 	private String pwd;
 	private String addr1;
 	private String addr2;
+	private String zipcode;
 	private int grade; // 일반 1/ 관리자 2/ 익명0
 	
+	
+	//Getter and setter
+	//ToString
+	
+	
+	public String getZipcode() {
+		return zipcode;
+	}
+
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
+
 	public MemberDTO() {
 		grade=1;
 	}
 	
-	//Getter and setter
-	//ToString
+	
 	
 	public String getEmail() {
 		return email;

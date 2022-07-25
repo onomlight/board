@@ -6,8 +6,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<%@include file="resources/includes/link.jsp" %>
-<link rel="stylesheet" href="resources/css/common.css" >
+<%@include file="/resources/includes/link.jsp" %><!-- 경로를 최상위로 / 잡아주면됨 -->
+<link rel="stylesheet" href="/resources/css/common.css" >
 
 </head>
 <body>
