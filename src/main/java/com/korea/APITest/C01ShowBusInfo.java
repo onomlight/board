@@ -1,4 +1,4 @@
-package ShowBusInfo;
+package com.korea.APITest;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -41,7 +41,7 @@ public class C01ShowBusInfo extends HttpServlet{
 			sb.append(str);
 		}
 		br.close();
-//		System.out.println(sb.toString());
+		System.out.println(sb.toString());
 		resp.getWriter().write(sb.toString());
 	}
 

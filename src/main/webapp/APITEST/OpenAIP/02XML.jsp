@@ -62,52 +62,21 @@
 
 	$.ajax({
 		type : "GET",
-		dataType : "json",
-		url : "/ShowBus.Info",
-		contentType : "application/json",
+		dataType : "xml",
+		url : "/ShowBusXML.Info",
+		contentType : "application/xml",
 		success : function(result){
-			//console.log(result);
-			//alert(bodylist.length);
-			bodylist=result["response"]["body"]["items"]["item"];
-			
-			
-			for(i=0;i<bodylist.length;i++){
-				$('#tstart').append("<option value="+bodylist[i].terminalId+">"+bodylist[i].terminalNm+"</option>");
-				$('#tend').append("<option value="+bodylist[i].terminalId+">"+bodylist[i].terminalNm+"</option>");
+			//alert(result);			 		
+			$(result).find('item').each(function(){
+				var terminalId=$(this).find("terminalId").text(); // 아이템중에 텍스트 아이디 찾아서 확인함
+				var terminalNm=$(this).find("terminalNm").text();
+				//console.log("ID : " +terminalId+" Nm : "+terminalNm ); 콘솔말고 나오게
 				
-			}
+				$('#tstart').append("<option value="+terminalId+">"+terminalNm+"</option>");
+				$('#tend').append("<option value="+terminalId+">"+terminalNm+"</option>");
+			})
 
-				/* for(i=0;i<bodylist.length;i++){
-				document.write(bodylist[i].terminalNm+" "+bodylist[i].terminalId+"<br>");
-			} */
-		/* 	$.each(result,function(k1,v1){
 				
-				$.each(v1,function(k2,v2){
-						
-					if(k2==="body"){
-					
-						$.each(v2,function(k3,v3){
-							 
-							if(k3==="items"){
-								
-								$.each(v3,function(k4,v4){
-									
-									for(i=0;i<v4.length;i++){
-										document.write(v4[i].terminalNm+" "+v4[i].terminalId+"<br>");	
-									}
-									
-									
-								})
-								
-								
-							}
-						})
-						
-					}
-					
-				})
-				
-			}) */
 		},
 		error : function(request,status,error){
 			alert("에러~");
